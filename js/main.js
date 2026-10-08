@@ -80,7 +80,8 @@ Glim.start();
 function enableStart() {
   if (!startBtn.disabled) return;
   startBtn.disabled = false;
-  startBtn.textContent = 'Follow the Glim ✨';
+  startBtn.textContent = 'Fly over my world ✨';
+  $('worldBtn').disabled = false;
 }
 
 map.on('load', () => {
@@ -347,9 +348,36 @@ $('goBtn').addEventListener('click', goToOwnPlace);
 $('placeInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') goToOwnPlace(); });
 
 // ================= Start =================
-startBtn.addEventListener('click', () => {
-  const r = startBtn.getBoundingClientRect();
-  Glim.burst(r.left + r.width / 2, r.top + r.height / 2, 90);
+async function startFlightFromIntro() {
+  const typed = $('introPlace').value.trim();
+  const msg = $('introMsg');
+  msg.textContent = 'Glim is finding you…';
+  try {
+    let loc;
+    if (typed) {
+      loc = await geocode(typed);
+      if (!loc) throw new Error('notfound');
+    } else {
+      const p = await Flight.locate();
+      loc = { lat: p.lat, lng: p.lng, name: 'your corner of the world' };
+    }
+    msg.textContent = '';
+    const r = startBtn.getBoundingClientRect();
+    Glim.burst(r.left + r.width / 2, r.top + r.height / 2, 90);
+    Flight.begin(loc.lat, loc.lng, loc.name);
+  } catch (err) {
+    console.warn(err);
+    msg.textContent = typed
+      ? "Glim couldn't find that place. Try adding the country."
+      : "Couldn't read your location. Allow it in the browser, or type a town above.";
+  }
+}
+startBtn.addEventListener('click', startFlightFromIntro);
+$('introPlace').addEventListener('keydown', (e) => { if (e.key === 'Enter') startFlightFromIntro(); });
+
+$('worldBtn').addEventListener('click', () => {
+  const r = $('worldBtn').getBoundingClientRect();
+  Glim.burst(r.left + r.width / 2, r.top + r.height / 2, 70);
   spinning = false;
   intro.classList.add('hidden');
   startGame();

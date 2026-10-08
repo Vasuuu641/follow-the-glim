@@ -16,14 +16,16 @@
 
 <!-- INTRO -->
 <section id="intro" class="screen">
-  <p class="eyebrow">A voyage of discovery · Löytöretki</p>
+  <p class="eyebrow">A voyage of discovery</p>
   <h1>Follow the Glim</h1>
   <p class="tagline">
     A tiny spark of light has scattered pixie dust across the world.<br />
     Read her clues. Find the places. See them like you never have.
   </p>
-  <button id="startBtn" disabled>Loading the world…</button>
-  <p class="hint">Move your mouse. Glim will follow.</p>
+    <button id="startBtn" disabled>Loading the world…</button>
+    <input id="introPlace" class="intro-input" type="text" placeholder="Or type a town instead (optional)" autocomplete="off" />
+    <p id="introMsg" class="muted"></p>
+    <button id="worldBtn" class="ghost small slim" disabled>Or play the world guessing game</button>
 </section>
 
 <!-- GAME PANEL -->
@@ -71,6 +73,24 @@
   <button id="againBtn">Play again</button>
 </section>
 
+<!-- FLIGHT HUD -->
+<div id="flightHud" class="gone">
+  <div id="fhTop"><span id="fhCount">0 / 8 wisps</span><span id="fhTime">0:00</span></div>
+  <div id="fhCompass"><div id="fhArrow">▲</div><span id="fhDist"></span></div>
+  <div id="fhHelp">Point the mouse where you want to fly · W faster · S slower · Esc to land</div>
+</div>
+<div id="toast" class="gone"></div>
+
+<!-- FLIGHT END -->
+<section id="flightEnd" class="screen hidden">
+  <p class="eyebrow">Flight complete</p>
+  <h1 id="feTitle">Dust Jar Full</h1>
+  <p id="feStats" class="tagline"></p>
+  <ul id="feList"></ul>
+  <button id="feAgain">Fly again</button>
+  <button id="feWorld" class="ghost">Play the world game</button>
+</section>
+
 <p class="credit">Powered by <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · © OpenStreetMap contributors</p>
 
 <canvas id="fx"></canvas>
@@ -79,5 +99,6 @@
 <script src="data/places.js"></script>
 <script src="js/glim.js"></script>
 <script src="js/main.js"></script>
+<script src="js/flight.js"></script>
 </body>
 </html>

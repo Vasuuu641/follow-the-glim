@@ -213,3 +213,59 @@ button.ghost:hover:not(:disabled) { background: rgba(111, 242, 224, 0.12); box-s
 .own-place button { width: auto; margin: 0; white-space: nowrap; }
 #againBtn { margin-top: 1.5rem; }
 #end h1 { margin-bottom: 0.4rem; }
+
+/* ---------- Intro extras ---------- */
+.intro-input {
+  margin-top: 1.2rem; width: min(22rem, 85vw); padding: 0.7rem 1.1rem; font: inherit;
+  color: var(--text); text-align: center; background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(111,242,224,0.4); border-radius: 999px; outline: none;
+}
+.intro-input:focus { box-shadow: 0 0 18px rgba(111,242,224,0.45); }
+button.slim { width: auto; margin-top: 0.8rem; }
+
+/* ---------- Flight HUD ---------- */
+#flightHud { position: fixed; inset: 0; z-index: 12; pointer-events: none; font-family: 'Cinzel', serif; }
+#fhTop {
+  position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 2rem; padding: 0.6rem 1.6rem;
+  background: rgba(5,8,22,0.75); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,217,120,0.3); border-radius: 999px;
+  color: var(--gold); font-weight: 700; letter-spacing: 0.08em;
+}
+#fhCompass {
+  position: absolute; right: 30px; bottom: 40px; width: 110px; text-align: center; color: var(--teal);
+}
+#fhArrow {
+  font-size: 2.6rem; line-height: 1; text-shadow: 0 0 18px var(--teal);
+  transition: transform 0.15s linear;
+}
+#fhDist { display: block; margin-top: 0.4rem; font-size: 0.85rem; letter-spacing: 0.08em; }
+#fhHelp {
+  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+  font-family: 'Nunito', sans-serif; font-size: 0.8rem; letter-spacing: 0.12em;
+  text-transform: uppercase; opacity: 0.55;
+}
+
+#toast {
+  position: fixed; top: 90px; left: 50%; transform: translateX(-50%); z-index: 14;
+  max-width: 30rem; text-align: center; padding: 1rem 1.6rem; line-height: 1.5;
+  background: rgba(5,8,22,0.85); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,217,120,0.4); border-radius: 16px;
+  box-shadow: 0 0 40px rgba(255,217,120,0.25); animation: clueIn 0.5s ease both;
+}
+#toast b { display: block; font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--gold); }
+
+/* ---------- Wisps on the map ---------- */
+.wisp {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, rgba(255,217,120,0.9) 25%, rgba(111,242,224,0.35) 55%, rgba(111,242,224,0) 72%);
+  animation: wispPulse 1.6s ease-in-out infinite;
+}
+@keyframes wispPulse { 50% { transform: scale(1.5); opacity: 0.75; } }
+
+/* ---------- Flight end ---------- */
+#feList { list-style: none; padding: 0; margin: 0 0 1.5rem; max-width: 36rem; display: grid; gap: 0.5rem; text-align: left; }
+#feList li { padding: 0.6rem 1rem; background: rgba(255,217,120,0.08); border-left: 3px solid var(--gold); border-radius: 8px; }
+#feList li b { color: var(--gold); display: block; }
+#feList li span { opacity: 0.75; font-size: 0.9rem; }
+#flightEnd button { margin: 0.4rem; }
