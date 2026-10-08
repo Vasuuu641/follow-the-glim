@@ -134,3 +134,82 @@ button:disabled {
   z-index: 20;
   pointer-events: none;
 }
+
+.gone { display: none !important; }
+.muted { opacity: 0.65; font-size: 0.9rem; margin: 0.4rem 0; }
+
+/* ---------- Game panel ---------- */
+.panel {
+  position: fixed; left: 20px; top: 20px; bottom: 20px; width: 340px;
+  z-index: 12; padding: 1.4rem;
+  display: flex; flex-direction: column; gap: 0.8rem;
+  background: rgba(5, 8, 22, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 217, 120, 0.25);
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(111, 242, 224, 0.12);
+  overflow-y: auto;
+}
+.hud-top {
+  display: flex; justify-content: space-between;
+  font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--teal);
+}
+#scoreLabel { color: var(--gold); }
+.panel h2 {
+  font-family: 'Cinzel', serif; margin: 0.4rem 0 0.2rem;
+  font-size: 1.35rem; color: var(--gold);
+}
+#clueList { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+#clueList li {
+  padding: 0.8rem 1rem; line-height: 1.5;
+  background: rgba(255, 217, 120, 0.08);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  animation: clueIn 0.6s ease both;
+}
+@keyframes clueIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: none; } }
+
+button.small { font-size: 0.95rem; padding: 0.7rem 1.2rem; width: 100%; margin-top: 0.3rem; }
+button.ghost { background: transparent; box-shadow: none; border-color: rgba(111, 242, 224, 0.5); color: var(--teal); }
+button.ghost:hover:not(:disabled) { background: rgba(111, 242, 224, 0.12); box-shadow: 0 0 20px rgba(111, 242, 224, 0.4); }
+
+.big { font-size: 1.3rem; margin: 0.4rem 0; }
+.points {
+  font-family: 'Cinzel', serif; font-size: 2.4rem; font-weight: 700; margin: 0.2rem 0 0.8rem;
+  background: linear-gradient(120deg, var(--gold), var(--teal));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ---------- Map pins ---------- */
+.pin { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #fff; }
+.pin.guess { background: var(--teal); box-shadow: 0 0 18px 6px rgba(111, 242, 224, 0.7); }
+.pin.truth { background: var(--gold); box-shadow: 0 0 22px 8px rgba(255, 217, 120, 0.8); animation: pinPulse 1.4s ease-in-out infinite; }
+@keyframes pinPulse {
+  50% { box-shadow: 0 0 36px 16px rgba(255, 217, 120, 0.9); }
+}
+
+/* ---------- Fairy-scale bar ---------- */
+#fairyBar {
+  position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+  z-index: 12; display: flex; align-items: center; gap: 1.2rem;
+  padding: 0.6rem 0.6rem 0.6rem 1.4rem;
+  background: rgba(5, 8, 22, 0.8); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 217, 120, 0.3); border-radius: 999px;
+  font-family: 'Cinzel', serif; color: var(--gold);
+}
+#fairyBar button { width: auto; margin: 0; }
+
+/* ---------- End screen ---------- */
+.final-score { font-family: 'Cinzel', serif; font-size: 3rem; margin: 0 0 1rem; color: var(--gold); }
+.final-score small { font-size: 1rem; opacity: 0.6; }
+.own-place { display: flex; gap: 0.6rem; width: min(30rem, 90vw); }
+.own-place input {
+  flex: 1; padding: 0.8rem 1.1rem; font: inherit; font-size: 1rem;
+  color: var(--text); background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(111, 242, 224, 0.5); border-radius: 999px; outline: none;
+}
+.own-place input:focus { box-shadow: 0 0 18px rgba(111, 242, 224, 0.5); }
+.own-place button { width: auto; margin: 0; white-space: nowrap; }
+#againBtn { margin-top: 1.5rem; }
+#end h1 { margin-bottom: 0.4rem; }

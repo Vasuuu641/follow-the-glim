@@ -1,36 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Follow the Glim</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Follow the Glim</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.0/dist/maplibre-gl.css" />
-  <link rel="stylesheet" href="css/style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.0/dist/maplibre-gl.css" />
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div id="map"></div>
+<div id="map"></div>
 
-  <section id="intro" class="screen">
-    <p class="eyebrow">A voyage of discovery · Löytöretki</p>
-    <h1>Follow the Glim</h1>
-    <p class="tagline">
-      A tiny spark of light has scattered pixie dust across the world.<br />
-      Read her clues. Find the places. See them like you never have.
-    </p>
-    <button id="startBtn" disabled>Loading the world…</button>
-    <p class="hint">Move your mouse. Glim will follow.</p>
-  </section>
+<!-- INTRO -->
+<section id="intro" class="screen">
+  <p class="eyebrow">A voyage of discovery · Löytöretki</p>
+  <h1>Follow the Glim</h1>
+  <p class="tagline">
+    A tiny spark of light has scattered pixie dust across the world.<br />
+    Read her clues. Find the places. See them like you never have.
+  </p>
+  <button id="startBtn" disabled>Loading the world…</button>
+  <p class="hint">Move your mouse. Glim will follow.</p>
+</section>
 
-  <p class="credit">Powered by <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · © OpenStreetMap contributors</p>
+<!-- GAME PANEL -->
+<aside id="hud" class="panel gone">
+  <div class="hud-top">
+    <span id="roundLabel">Round 1 / 5</span>
+    <span id="scoreLabel">0 ✦</span>
+  </div>
 
-  <canvas id="fx"></canvas>
+  <div id="playArea">
+    <h2>Glim whispers…</h2>
+    <ul id="clueList"></ul>
+    <button id="moreClue" class="small ghost">Another clue (−15%)</button>
+    <p id="guessHint" class="muted">Click the map to drop your pin.</p>
+    <button id="lockBtn" class="small" disabled>Lock in guess</button>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.0/dist/maplibre-gl.js"></script>
-  <script src="js/glim.js"></script>
-  <script src="js/main.js"></script>
+  <div id="result" class="gone">
+    <h2 id="placeName"></h2>
+    <p id="placeCountry" class="muted"></p>
+    <p id="resultText" class="big"></p>
+    <p id="pointsText" class="points"></p>
+    <button id="fairyBtn" class="small ghost">See it at fairy scale ✨</button>
+    <button id="nextBtn" class="small">Next →</button>
+  </div>
+</aside>
+
+<!-- FAIRY-SCALE BAR -->
+<div id="fairyBar" class="gone">
+  <span id="fairyTitle"></span>
+  <button id="fairyBack" class="small">← Back</button>
+</div>
+
+<!-- END SCREEN -->
+<section id="end" class="screen hidden">
+  <p class="eyebrow">Voyage complete</p>
+  <h1 id="rankTitle">Spark Seeker</h1>
+  <p class="final-score"><span id="finalScore">0</span> ✦ <small>of 25,000</small></p>
+  <p class="tagline">Now see a place you know through Glim's eyes.<br />Type your street, town or favourite spot:</p>
+  <div class="own-place">
+    <input id="placeInput" type="text" placeholder="e.g. Pécs, Hungary" autocomplete="off" />
+    <button id="goBtn" class="small">Shrink it ✨</button>
+  </div>
+  <p id="geoMsg" class="muted"></p>
+  <button id="againBtn">Play again</button>
+</section>
+
+<p class="credit">Powered by <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · © OpenStreetMap contributors</p>
+
+<canvas id="fx"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.0/dist/maplibre-gl.js"></script>
+<script src="data/places.js"></script>
+<script src="js/glim.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

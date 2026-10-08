@@ -167,5 +167,19 @@ const Glim = (() => {
         );
       }
     },
+    trail(x1, y1, x2, y2, n = 40) {
+      for (let i = 0; i < n; i++) {
+        const f = i / (n - 1);
+        setTimeout(() => {
+          const x = x1 + (x2 - x1) * f, y = y1 + (y2 - y1) * f;
+          for (let j = 0; j < 3; j++) {
+            emit(x + (Math.random() - 0.5) * 6, y + (Math.random() - 0.5) * 6,
+                 (Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20,
+                 1.2 + Math.random() * 1.2, 8 + Math.random() * 8,
+                 Math.random() < 0.5 ? SPRITE.gold : SPRITE.teal);
+          }
+        }, i * 35);
+      }
+    },
   };
 })();
