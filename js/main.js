@@ -130,6 +130,7 @@ function worldView() {
 }
 
 function startGame() {
+  Music.start('world');
   state.round = 0;
   state.total = 0;
   state.order = shuffle(PLACES).slice(0, ROUNDS);
@@ -248,6 +249,7 @@ function showEnd() {
   state.phase = 'ended';
   clearMarkers();
   hide($('hud'));
+  Music.stop();
   $('rankTitle').textContent = rankFor(state.total);
   countUp($('finalScore'), state.total, 1800, '', '');
   $('geoMsg').textContent = '';
@@ -266,6 +268,7 @@ $('againBtn').addEventListener('click', () => {
 const fairy = { active: false, spin: false, bearing: 0, from: 'hud', raf: 0 };
 
 function enterFairy(lngV, latV, name, from) {
+  Music.start('fairy');
   fairy.from = from;
   fairy.active = true;
   fairy.spin = false;
