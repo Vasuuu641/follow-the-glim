@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Follow the Glim</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.0/dist/maplibre-gl.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="map"></div>
+
+  <section id="intro" class="screen">
+    <p class="eyebrow">A voyage of discovery · Löytöretki</p>
+    <h1>Follow the Glim</h1>
+    <p class="tagline">
+      A tiny spark of light has scattered pixie dust across the world.<br />
+      Read her clues. Find the places. See them like you never have.
+    </p>
+    <button id="startBtn" disabled>Loading the world…</button>
+    <p class="hint">Move your mouse. Glim will follow.</p>
+  </section>
+
+  <p class="credit">Powered by <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · © OpenStreetMap contributors</p>
+
+  <canvas id="fx"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.6.0/dist/maplibre-gl.js"></script>
+  <script src="js/glim.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
